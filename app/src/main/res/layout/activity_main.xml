@@ -5,44 +5,48 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center|start"
-    android:gravity="start"
+    android:divider="@drawable/spacer_medium"
+    android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp"
+    android:showDividers="middle"
     tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome_text"
-        android:textSize="24sp" />
+        android:textSize="60sp" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_description"
-        android:textSize="16sp" />
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:divider="@drawable/spacer_medium"
         android:orientation="horizontal"
         android:padding="0dp"
         android:showDividers="middle">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_button_text"/>
+
+        <Button
+            android:id="@+id/signUpButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/sign_up_button_text" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/login_button_text" />
     </LinearLayout>
 
 </LinearLayout>
