@@ -1,5 +1,6 @@
 package edu.temple.convoy
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -24,11 +25,18 @@ class LoginActivity : AppCompatActivity() {
         val loginButton = findViewById<Button>(R.id.submitLoginButton)
         loginButton.setOnClickListener {
             val convoyApi = RetrofitHelper.getInstance().create(Convoy::class.java)
-            
+
             GlobalScope.launch {
                 val result = convoyApi.login(getFormData())
                 result?.run {
                     Log.d("login: ", this.body().toString())
+                    if (this.body()?.status == "SUCCESS") {
+                        val intent = Intent(this@LoginActivity, MapsActivity::class.java)
+                        intent.putExtra("session_key", this.body()?.session_key)
+                        intent.putExtra("username", username.text.toString())
+                        startActivity(intent)
+                        finish()
+                    }
                 }
             }
         }

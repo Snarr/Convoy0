@@ -11,4 +11,6 @@ interface Convoy {
 
     @POST("/lab/convoy/account.php")
     suspend fun login(@Body body: RequestBody) : Response<LoginResponse>
+    @POST("/lab/convoy/convoy.php")
+    suspend fun update(@Body body: RequestBody) : Response<UpdateConvoyResponse>
 }

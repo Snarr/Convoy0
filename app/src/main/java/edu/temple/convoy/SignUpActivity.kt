@@ -1,5 +1,6 @@
 package edu.temple.convoy
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -39,8 +40,15 @@ class SignUpActivity : AppCompatActivity() {
             // Switch to different scope later on?
             GlobalScope.launch {
                 val result = convoyApi.signUp(getFormData())
-                result?.run {
+                result.run {
                     Log.d("signUp: ", this.body().toString())
+                    if (this.body()?.status == "SUCCESS") {
+                        val intent = Intent(this@SignUpActivity, MapsActivity::class.java)
+                        intent.putExtra("session_key", this.body()?.session_key)
+                        intent.putExtra("username", username.text.toString())
+                        startActivity(intent)
+                        finish()
+                    }
                 }
                 // Checking the results
             }
